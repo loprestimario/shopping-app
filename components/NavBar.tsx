@@ -46,8 +46,8 @@ const NavBar: React.FC<Props> = ({}) => {
             </Link>
           </li>
           <li>
-            <Link href='/weddings'>
-              <a className={`nav-bar ${asPath === '/weddings' ? 'active' : ''}`}>Weddings</a>
+            <Link href='/contact'>
+              <a className={`nav-bar ${asPath === '/contact' ? 'active' : ''}`}>Contact</a>
             </Link>
           </li>
         </ul>

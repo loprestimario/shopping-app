@@ -40,11 +40,11 @@ const NavBar: React.FC<Props> = ({}) => {
               <a className={`nav-bar ${asPath === '/portofolio' ? 'active' : ''}`}>Portofolio</a>
             </Link>
           </li>
-          <li>
-            <Link href='/blog'>
-              <a className={`nav-bar ${asPath === '/blog' ? 'active' : ''}`}>Blog</a>
-            </Link>
-          </li>
+          {/*<li>*/}
+          {/*  <Link href='/blog'>*/}
+          {/*    <a className={`nav-bar ${asPath === '/blog' ? 'active' : ''}`}>Blog</a>*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
           <li>
             <Link href='/contact'>
               <a className={`nav-bar ${asPath === '/contact' ? 'active' : ''}`}>Contact</a>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRssSquare } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faTimes, faRssSquare } from '@fortawesome/free-solid-svg-icons'
 
 type Props = {}
 
@@ -37,15 +37,15 @@ const NavBar: React.FC<Props> = ({}) => {
             </a>
           </Link>
           <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"}/>
+            {click ? <FontAwesomeIcon icon={faTimes} size="1x"/> : <FontAwesomeIcon icon={faBars} size="1x"/> }
           </div>
-          <ul className="nav-menu">
-            <li>
+          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+            <li onClick={closeMobileMenu}>
               <Link href='/about' passHref>
                 <a className={`nav-bar ${asPath === '/about' ? 'active' : ''}`}>About</a>
               </Link>
             </li>
-            <li>
+            <li onClick={closeMobileMenu}>
               <Link href='/portofolio'>
                 <a className={`nav-bar ${asPath === '/portofolio' ? 'active' : ''}`}>Portofolio</a>
               </Link>
@@ -55,7 +55,7 @@ const NavBar: React.FC<Props> = ({}) => {
             {/*    <a className={`nav-bar ${asPath === '/blog' ? 'active' : ''}`}>Blog</a>*/}
             {/*  </Link>*/}
             {/*</li>*/}
-            <li>
+            <li onClick={closeMobileMenu}>
               <Link href='/contact'>
                 <a className={`nav-bar ${asPath === '/contact' ? 'active' : ''}`}>Contact</a>
               </Link>
@@ -93,19 +93,54 @@ const NavBar: React.FC<Props> = ({}) => {
         .icon-container {
           width: 35px;
         }
-        .nav-menu {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-        }
         li {
           list-style: none;
           padding: 0rem 2rem;
         }
         .active {
           color: blue;
+        }
+        .menu-icon {
+          width: 50px;
+          //background-color: red;
+        }
+        .nav-menu {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 90vh;
+          position: absolute;
+          top: 80px;
+          left: -100%;
+          margin: 0;
+          opacity: 1;
+          transition: all 0.3s ease;
+        }
+        .nav-menu.active {
+          background: #242222;
+          left: 0;
+          opacity: 1;
+          transition: all 0.3s ease;
+          z-index: 1;
+        }
+        @media (min-width: 600px) {
+          .menu-icon {
+            display: none;
+          }
+          .nav-menu.active {
+            background: unset;
+          }
+          .nav-menu {
+            position: unset;
+            background: unset;
+            height: 80px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+          }
+          
         }
       `}</style>
     </>

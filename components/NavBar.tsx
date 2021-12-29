@@ -29,7 +29,7 @@ const NavBar: React.FC<Props> = ({}) => {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link href='/'>
-            <a className={`navbar-logo ${asPath === '/' ? 'active' : ''}`}>
+            <a className={`navbar-logo ${asPath === '/' ? 'active' : ''}`} onClick={closeMobileMenu}>
               <span className="home-page">Web App</span>
               <span className="icon-container">
                   <FontAwesomeIcon icon={faRssSquare} size="1x"/>
@@ -37,7 +37,7 @@ const NavBar: React.FC<Props> = ({}) => {
             </a>
           </Link>
           <div className="menu-icon" onClick={handleClick}>
-            {click ? <FontAwesomeIcon icon={faTimes} size="1x"/> : <FontAwesomeIcon icon={faBars} size="1x"/> }
+            {click ? <FontAwesomeIcon icon={faTimes} size="1x"/> : <FontAwesomeIcon icon={faBars} size="1x"/>}
           </div>
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li onClick={closeMobileMenu}>
@@ -97,50 +97,75 @@ const NavBar: React.FC<Props> = ({}) => {
           list-style: none;
           padding: 0rem 2rem;
         }
-        .active {
-          color: blue;
-        }
-        .menu-icon {
-          width: 50px;
-          //background-color: red;
+        .nav-menu.active {
+          background: unset;
         }
         .nav-menu {
+          display: grid;
+          grid-template-columns: repeat(4, auto);
+          grid-gap: 10px;
+          list-style: none;
+          text-align: center;
+          width: 60vw;
+          justify-content: end;
+          margin-right: 2rem;
+        }
+        .nav-bar {
+          color: dimgray;
           display: flex;
-          flex-direction: column;
-          width: 100%;
-          height: 90vh;
-          position: absolute;
-          top: 80px;
-          left: -100%;
-          margin: 0;
-          opacity: 1;
-          transition: all 0.3s ease;
+          align-items: center;
+          text-decoration: none;
+          padding: 0.5rem 1rem;
+          height: 100%;
         }
-        .nav-menu.active {
-          background: #242222;
-          left: 0;
-          opacity: 1;
-          transition: all 0.3s ease;
-          z-index: 1;
+        .nav-bar.active {
+          color: black;
         }
-        @media (min-width: 600px) {
+        .nav-bar:hover {
+          box-shadow: 0 3px white;
+          margin-bottom: -4px;
+          color: white;
+          transition: all 0.2s ease-out;
+        }
+        @media (max-width: 600px) {
           .menu-icon {
-            display: none;
-          }
-          .nav-menu.active {
-            background: unset;
+            width: 25px;
+            //background-color: red;
           }
           .nav-menu {
-            position: unset;
-            background: unset;
-            height: 80px;
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 200px 0;
             width: 100%;
+            height: 90vh;
+            position: absolute;
+            top: 80px;
+            left: -100%;
+            margin: 0;
+            opacity: 1;
+            transition: all 0.3s ease;
           }
-          
+          .nav-menu.active {
+            background: lightgray;
+            left: 0;
+            opacity: 1;
+            transition: all 0.3s ease;
+            z-index: 1;
+          }
+          .nav-bar {
+            text-align: center;
+            padding: 2rem;
+            width: 100%;
+            display: table;
+          }
+          .nav-bar:hover {
+            background-color: gainsboro;
+            color: #242424;
+            border-radius: 4px;
+            box-shadow: unset;
+            margin: unset;
+          }
         }
       `}</style>
     </>

@@ -68,7 +68,8 @@ const NavBar: React.FC<Props> = ({}) => {
           display: flex;
           width: 100%;
           height: 80px;
-          background: linear-gradient(90deg, darkgrey 0%, lightgray 100%);
+          background: linear-gradient(90deg, whitesmoke 0%, white 100%);
+          box-shadow: 0 0 5px grey;
           margin: 0;
           font-size: 1.1rem;
           position: sticky;
@@ -86,6 +87,7 @@ const NavBar: React.FC<Props> = ({}) => {
         .navbar-logo {
           display: flex;
           align-items: center;
+          color: #887856;
         }
         .home-page {
           width: 90px;
@@ -117,20 +119,22 @@ const NavBar: React.FC<Props> = ({}) => {
           text-decoration: none;
           padding: 0.5rem 1rem;
           height: 100%;
+          color: #887856
         }
         .nav-bar.active {
-          color: black;
+          color: #ddaa44;
         }
         .nav-bar:hover {
-          box-shadow: 0 3px white;
+          box-shadow: 0 3px #887861;
           margin-bottom: -4px;
-          color: white;
+          color: #887861;
           transition: all 0.2s ease-out;
         }
         @media (max-width: 600px) {
           .menu-icon {
             width: 25px;
             //background-color: red;
+            color: #887856;
           }
           .nav-menu {
             display: flex;
@@ -147,7 +151,7 @@ const NavBar: React.FC<Props> = ({}) => {
             transition: all 0.3s ease;
           }
           .nav-menu.active {
-            background: lightgray;
+            background: white;
             left: 0;
             opacity: 1;
             transition: all 0.3s ease;
@@ -158,10 +162,10 @@ const NavBar: React.FC<Props> = ({}) => {
             padding: 2rem;
             width: 100%;
             display: table;
+            -webkit-tap-highlight-color: transparent;
           }
           .nav-bar:hover {
-            background-color: gainsboro;
-            color: #242424;
+            background: whitesmoke;
             border-radius: 4px;
             box-shadow: unset;
             margin: unset;

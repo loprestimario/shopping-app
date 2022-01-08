@@ -170,6 +170,16 @@ const FormContact: React.FC<Props> = ({}) => {
             width: 90%;
             margin: auto;
           }
+          input {
+            font-size: 16px;
+          }
+          label {
+          margin-top: 15px;
+          margin-bottom: 5px;
+        }
+        label:first-child {
+          margin-top: 5px;
+        }
         }
       `}</style>
     </>

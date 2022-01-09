@@ -2,8 +2,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import FormContact from "../components/FormContact";
 import React from "react";
+import MapContainer from "../components/MapContainer";
 
 const Contact: NextPage = () => {
+
   return (
     <div className="home-page">
       <Head>
@@ -17,6 +19,13 @@ const Contact: NextPage = () => {
           <h1>Richiedi un preventivo</h1>
         </div>
         <FormContact/>
+      </div>
+      <div className="map-container">
+        <div className="text-container">
+          <h1>Dove ci troviamo</h1>
+          <span className="street">Castello ursino, Catania</span>
+        </div>
+        <MapContainer/>
       </div>
       <style jsx>{`
         .contact-container {
@@ -32,11 +41,17 @@ const Contact: NextPage = () => {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          flex: 0 0 30%;
           margin-left: 100px;
         }
         .form-container {
           position: absolute;
           top: 100px;
+        }
+        .map-container {
+          display: flex;
+          height: 350px;
+          margin-top: 50px;
         }
         @media (max-width: 600px) {
           .contact-container {
@@ -52,10 +67,16 @@ const Contact: NextPage = () => {
           .contact {
             display: none;
           }
+          .map-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin: 20px 0;
+          }
         }
       `}</style>
     </div>
   )
 }
 
-export default Contact
+export default Contact;

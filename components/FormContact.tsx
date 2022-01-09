@@ -94,7 +94,8 @@ const FormContact: React.FC<Props> = ({}) => {
         form {
           max-width: 500px;
           background-color: #fafafa;
-          margin: 0 auto;
+          //margin: 0 auto;
+          margin-left: 50px;
           box-shadow: 0 0 1px grey;
           padding: 10px;
         }
@@ -169,6 +170,9 @@ const FormContact: React.FC<Props> = ({}) => {
           .form-container {
             width: 90%;
             margin: auto;
+          }
+          form {
+            margin: 0 auto;
           }
           input {
             font-size: 16px;

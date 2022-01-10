@@ -1,27 +1,36 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from 'emailjs-com'
+import { Button, Alert, Spinner } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 type Props = {}
 
 const FormContact: React.FC<Props> = ({}) => {
 
-
   const { register, reset, formState: { errors }, handleSubmit } = useForm({
     mode: "onBlur" // "onChange"
   });
   const onSubmit = handleSubmit((data) => {
+      setProcessing(true);
       emailjs.sendForm('service_qo6gq9b', 'template_zb00fyj', '#contact-form', 'user_oaNYaw9U4Xdls5dp5sNBj')
       .then((result) => {
         console.log(result.text);
+        setSuccessAlert(true);
+        setProcessing(false);
+        reset();
       }, (error) => {
         console.log(error.text);
+        setErrorAlert(true);
+        setProcessing(false);
+
       });
-      reset();
     }
   );
+  const [showSuccessAlert, setSuccessAlert] = useState(false);
+  const [showErrorAlert, setErrorAlert] = useState(false);
+  const [processing, setProcessing] = useState(false);
 
-  // @ts-ignore
   return (
     <>
       <div className='form-container'>
@@ -81,7 +90,17 @@ const FormContact: React.FC<Props> = ({}) => {
             <textarea {...register("message", { required: false })} />
             {errors.message && <p>This is required</p>}
           </div>
-          <input type="submit"/>
+          <div className="submit-button">
+            <Button type="submit" variant="secondary" style={{ width: '100px' }}>
+              {processing ? <Spinner animation="border" size="sm"/> : '  Invia  '}
+            </Button>
+          </div>
+          {showSuccessAlert && <Alert variant="success" onClose={() => setSuccessAlert(false)} dismissible>
+						<span>Messaggio inviato con successo</span>
+					</Alert>}
+          {showErrorAlert && <Alert variant="danger" onClose={() => setErrorAlert(false)} dismissible>
+						<span>Messaggio non inviato, riprova dopo.</span>
+					</Alert>}
         </form>
       </div>
       <style jsx>{`
@@ -127,20 +146,23 @@ const FormContact: React.FC<Props> = ({}) => {
           font-size: 14px;
           font-weight: 200;
         }
-        input[type="submit"] {
-          background: grey;
-          color: white;
-          text-transform: uppercase;
-          width: 160px;
-          border: none;
-          margin-top: 40px;
-          padding: 15px;
-          font-size: 13px;
-          font-weight: 100;
-          letter-spacing: 10px;
-          margin: auto;
-          margin-top: 20px;
+        .submit-button {
+          margin: 10px 0 15px 0;
         }
+        //input[type="submit"] {
+        //  background: grey;
+        //  color: white;
+        //  text-transform: uppercase;
+        //  width: 260px;
+        //  border: none;
+        //  margin-top: 40px;
+        //  padding: 15px;
+        //  font-size: 13px;
+        //  font-weight: 100;
+        //  letter-spacing: 10px;
+        //  margin: auto;
+        //  margin-top: 20px;
+        //}
         input[type="submit"]:hover {
           background: grey;
           opacity: 0.9;
@@ -151,6 +173,8 @@ const FormContact: React.FC<Props> = ({}) => {
           transform: translateY(3px);
           border: 1px solid transparent;
           opacity: 0.8;
+          min-width: 100%;
+          width: 100%;
         }
         input:disabled {
           opacity: 0.4;
@@ -161,6 +185,8 @@ const FormContact: React.FC<Props> = ({}) => {
         input[type="button"],
         input[type="submit"] {
           -webkit-appearance: none;
+          min-width: 100%;
+          width: 100%;
         }
         textarea {
           width: 100%;
@@ -178,12 +204,12 @@ const FormContact: React.FC<Props> = ({}) => {
             font-size: 16px;
           }
           label {
-          margin-top: 15px;
-          margin-bottom: 5px;
-        }
-        label:first-child {
-          margin-top: 5px;
-        }
+            margin-top: 15px;
+            margin-bottom: 5px;
+          }
+          label:first-child {
+            margin-top: 5px;
+          }
         }
       `}</style>
     </>

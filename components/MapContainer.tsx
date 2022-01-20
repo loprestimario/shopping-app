@@ -23,7 +23,7 @@ const MapContainer = () => {
         .mapouter {
           position: relative;
           text-align: right;
-          height: 500px;
+          //height: 500px;
           width: 600px;
           margin-left: 50px;
         }
@@ -32,6 +32,9 @@ const MapContainer = () => {
           background: none !important;
           //height: 500px;
           //width: 600px;
+        }
+        .gmap_canvas a {
+          display: none;
         }
         @media (max-width: 600px) {
           .mapouter {

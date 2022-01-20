@@ -88,6 +88,7 @@ const NavBar: React.FC<Props> = ({}) => {
           display: flex;
           align-items: center;
           color: #887856;
+          text-decoration: none;
         }
         .home-page {
           width: 90px;

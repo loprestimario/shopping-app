@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from "react";
 import HeroSection from "../components/HeroSection";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   return (
@@ -14,6 +15,8 @@ const Home: NextPage = () => {
       <div >
         {/*<HeroSection/>*/}
       <h1>Check out these EPIC Destinations!</h1>
+       <Link href='/gallery/1'>aaa</Link><br/>
+       <Link href='/gallery/2'>bbb 22</Link>
       </div>
     </div>
 
